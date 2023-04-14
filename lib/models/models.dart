@@ -10,7 +10,7 @@ class HospitalsData {
   final String image;
   final String deskripsi;
 
-  const HospitalsData(
+  HospitalsData(
       {required this.id,
       required this.nama_rumahsakit,
       required this.alamat,
@@ -21,12 +21,13 @@ class HospitalsData {
 
   factory HospitalsData.fromJson(Map<String, dynamic> json) {
     return HospitalsData(
-        id: json['id'],
-        nama_rumahsakit: json['nama_rumahsakit'],
-        alamat: json['alamat'],
-        email: json['email'],
-        telepon: json['telepon'],
-        image: json['image'],
-        deskripsi: json['deskripsi']);
+      id: json['id'] as int,
+      nama_rumahsakit: json['nama_rs'] as String,
+      alamat: json['alamat'] as String,
+      email: json['email'] as String,
+      telepon: json['telepon'] as int,
+      image: json['image'] as String,
+      deskripsi: json['deskripsi'] as String,
+    );
   }
 }

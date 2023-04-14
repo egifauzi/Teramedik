@@ -1,10 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:teramedik/models/models.dart';
 import 'package:teramedik/models/services.dart';
 import 'package:teramedik/ui/pages/hospital_detail.dart';
-
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -22,23 +20,21 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<HospitalsData> itemList = [];
+  static List<HospitalsData> itemList = [];
   Repository repo = Repository();
 
-  getData() async {
-    itemList = await repo.getDataHospitals();
-    setState(() {});
-  }
+  // getData() async {
+  //   itemList = await repo.getDataHospitals();
+  //   setState(() {});
+  // }
 
-  @override
-  void initState() {
-    getData();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   getData();
+  //   super.initState();
+  // }
 
   int _crossAxisCount = 2;
-
-  // double _aspectRatio = 1.5;
 
   ViewType viewType = ViewType.grid;
 
@@ -46,7 +42,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // getDataHospitals();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -62,7 +57,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 viewType = ViewType.grid;
               } else {
                 _crossAxisCount = 1;
-                // _aspectRatio = 15;
                 viewType = ViewType.list;
               }
               setState(() {});
@@ -80,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 boxShadow: const [
                   BoxShadow(
                     color: Colors.black,
-                    offset: Offset(0.0, 1.0), //(x,y)
+                    offset: Offset(0.0, 1.0),
                     blurRadius: 10.0,
                   ),
                 ],

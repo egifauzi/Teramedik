@@ -6,8 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:teramedik/models/models.dart';
 
 class Repository {
-  final baseUrl = 'https://7187cc3f-6ef6-4472-b24b-bb838c1547d5.mock.pstmn.io';
-
+  final baseUrl = 'https://api.weteamproject.com/api/list-rumah-sakit?page=1';
   Future getDataHospitals() async {
     try {
       final response = await http.get(Uri.parse(baseUrl));
