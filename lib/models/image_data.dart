@@ -11,7 +11,7 @@ class ImageData {
 List<ImageData> getImageDataList() {
   return [
     ImageData(
-        'https://images.unsplash.com/photo-1467733037332-340204cb229b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=875&q=80',
+        'https://api.weteamproject.com\/storage\/rumahsakits\/default.jpg',
         'Shinny Sunflower',
         '01-Jan-2022'),
     ImageData(

@@ -1,22 +1,20 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:teramedik/models/models.dart';
+import 'package:teramedik/models/services.dart';
 import 'package:teramedik/ui/pages/hospital_detail.dart';
-import 'package:teramedik/ui/pages/widgets/footer.dart';
-import 'package:http/http.dart' as http;
 
-import '../models/image_data.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
-  final String url = 'https://api.weteamproject.com/api.json';
+  // final String url = 'https://api.weteamproject.com/api.json';
 
-  Future getDataHospitals() async {
-    var response = await http.get(Uri.parse(url));
-    print(json.decode(response.body));
-    return json.decode(response.body);
-  }
+  // Future getDataHospitals() async {
+  //   var response = await http.get(Uri.parse(url));
+  //   print(json.decode(response.body));
+  //   return json.decode(response.body);
+  // }
 
   @override
   // ignore: library_private_types_in_public_api
@@ -24,14 +22,27 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<HospitalsData> itemList = [];
+  Repository repo = Repository();
+
+  getData() async {
+    itemList = await repo.getDataHospitals();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
   int _crossAxisCount = 2;
 
   // double _aspectRatio = 1.5;
 
   ViewType viewType = ViewType.grid;
 
-  List<ImageData> itemList = getImageDataList();
-  
+  // List<Repository> itemList = HospitalsData();
 
   @override
   Widget build(BuildContext context) {
@@ -83,8 +94,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     childAspectRatio: 3 / 2,
                     mainAxisSpacing: 80,
                     crossAxisSpacing: 20,
-                    children: itemList.map((ImageData imageData) {
-                      return getGridItem(imageData);
+                    children: itemList.map((HospitalsData hospitalsData) {
+                      return getGridItem(hospitalsData);
                     }).toList(),
                   ))),
           Align(
@@ -110,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget getGridItem(ImageData imageData) {
+  Widget getGridItem(HospitalsData hospitalsData) {
     // LISTttttttt
     return Column(
       children: [
@@ -140,7 +151,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.network(
-                        imageData.path.toString(),
+                        hospitalsData.image.toString(),
                         // height: 300,
                         fit: BoxFit.contain,
                       ),
@@ -175,7 +186,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Image.network(
-                              imageData.path,
+                              hospitalsData.image,
                             )),
                       ),
                     ],

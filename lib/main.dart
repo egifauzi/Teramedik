@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teramedik/ui/home_page.dart';
-
+import 'package:teramedik/ui/pages/hospital_detail.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,7 +10,6 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       /*theme: ThemeData(
